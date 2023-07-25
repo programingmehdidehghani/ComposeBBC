@@ -16,7 +16,7 @@ fun ProfileScreen(){
     ) {
         Text(
             text = "hello package",
-            fontSize = 12.sp
+            fontSize = 22.sp
         )
     }
 }

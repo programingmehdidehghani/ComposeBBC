@@ -59,8 +59,12 @@ class MainActivity : ComponentActivity() {
                                     contentDescription = "Get Help",
                                     icon = Icons.Default.Info
                                 )
+
                             )
                             , onItemClick = {
+                                scope.launch {
+                                    scaffoldState.drawerState.close()
+                                }
                                 println("click on ${it.title}")
                             }
                         )

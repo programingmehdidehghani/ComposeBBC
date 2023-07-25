@@ -16,7 +16,7 @@ fun SettingScreen(){
     ) {
         Text(
             text = "hello setting",
-            fontSize = 12.sp
+            fontSize = 22.sp
         )
     }
 
