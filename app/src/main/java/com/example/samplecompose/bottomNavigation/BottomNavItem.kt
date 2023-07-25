@@ -14,17 +14,17 @@ sealed class BottomNavItem(
     val route: String
 ){
     object Home: BottomNavItem(
-        title = Constants.CATEGORY_AGENTS,
+        title = "Home",
         image = Icons.Default.Home,
         route = "home"
     )
     object Profile: BottomNavItem(
-        title = Constants.CATEGORY_MAPS,
+        title = "profile",
         image = Icons.Default.Person,
         route = "profile"
     )
     object Setting: BottomNavItem(
-        title = Constants.CATEGORY_WEAPONS,
+        title = "setting",
         image = Icons.Default.Settings,
         route = "setting"
     )

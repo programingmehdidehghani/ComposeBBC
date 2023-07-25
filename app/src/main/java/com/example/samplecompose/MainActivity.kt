@@ -23,7 +23,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SampleComposeTheme {
-                MainScreen(navController = , paddingValues = )
                 val scaffoldState = rememberScaffoldState()
                 val scope = rememberCoroutineScope()
                 Scaffold(
@@ -67,7 +66,7 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                 ) {
-
+                    MainScreen()
                 }
             }
         }
