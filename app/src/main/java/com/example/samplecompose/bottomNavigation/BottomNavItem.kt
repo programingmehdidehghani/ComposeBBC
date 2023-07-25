@@ -1,31 +1,32 @@
 package com.example.samplecompose.bottomNavigation
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.ui.graphics.vector.ImageVector
 import com.example.samplecompose.R
 import com.example.samplecompose.util.Constants
 
 sealed class BottomNavItem(
     val title: String,
-    val image: Int,
+    val image: ImageVector,
     val route: String
 ){
-    object Agents: BottomNavItem(
+    object Home: BottomNavItem(
         title = Constants.CATEGORY_AGENTS,
-        image = R.drawable.ic_agents,
+        image = Icons.Default.Home,
         route = "home"
     )
-    object Maps: BottomNavItem(
+    object Profile: BottomNavItem(
         title = Constants.CATEGORY_MAPS,
-        image = R.drawable.ic_maps,
-        route = "map"
+        image = Icons.Default.Person,
+        route = "profile"
     )
-    object Weapons: BottomNavItem(
+    object Setting: BottomNavItem(
         title = Constants.CATEGORY_WEAPONS,
-        image = R.drawable.ic_weapons,
-        route = "gon"
+        image = Icons.Default.Settings,
+        route = "setting"
     )
-    object Tiers: BottomNavItem(
-        title = Constants.CATEGORY_COMPETITIVE_TIERS,
-        image = R.drawable.ic_tiers,
-        route = "tires"
-    )
+
 }
