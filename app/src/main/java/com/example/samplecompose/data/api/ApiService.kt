@@ -16,5 +16,5 @@ interface ApiService {
         pageNumber : Int = 1,
         @Query("apiKey")
         apiKey : String = API_KEY
-    ) : Response<NewsResponse>
+    ) : NewsResponse
 }
