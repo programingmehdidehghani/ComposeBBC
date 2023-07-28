@@ -1,11 +1,11 @@
 package com.example.samplecompose.util
 
-object Constants {
-    const val CATEGORY_AGENTS = "Agents"
-    const val CATEGORY_MAPS = "Maps"
-    const val CATEGORY_WEAPONS = "Weapons"
-    const val CATEGORY_COMPETITIVE_TIERS = "Tiers"
-    const val PARAM_AGENT_ID = "agentUuid"
-    const val PARAM_MAP_ID = "mapUuid"
-    const val PARAM_WEAPON_ID = "weaponUuid"
+class Constants {
+    companion object{
+        const val API_KEY = "7edf22d3e2fb4dcb85b414daf7e924f4"
+        const val BASE_URL = "https://newsapi.org"
+        const val DATABASE_NAME = "bbc_db"
+        const val QUERY_PAGE_SIZE = 20
+    }
+
 }
