@@ -1,6 +1,5 @@
 package com.example.samplecompose.data.models
 
-import androidx.room.Entity
 
 
 data class Article(
