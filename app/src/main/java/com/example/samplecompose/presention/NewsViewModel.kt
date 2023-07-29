@@ -31,8 +31,8 @@ class NewsViewModel @Inject constructor (
                 Resource.Loading -> _state.value = HomeState(isLoading = false)
                 is Resource.Success<*> ->{
                     result.data.let {
-                        _state.value = HomeState(agents = it as List<NewsResponse>)
-                        allAgents = it
+                        _state.value = HomeState(agents = it)
+                       // allAgents = it
                     }
                 }
                 is Resource.Error -> _state.value = HomeState(error = result.errorMessage)

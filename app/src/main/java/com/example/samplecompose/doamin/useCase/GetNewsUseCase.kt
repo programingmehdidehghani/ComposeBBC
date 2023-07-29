@@ -1,5 +1,7 @@
 package com.example.samplecompose.doamin.useCase
 
+import android.util.Log
+import com.example.samplecompose.data.models.Article
 import com.example.samplecompose.data.models.NewsResponse
 import com.example.samplecompose.doamin.repository.NewsRepository
 import com.example.samplecompose.util.Resource
@@ -17,7 +19,9 @@ class GetNewsUseCase @Inject constructor(
 
         try {
             emit(Resource.Loading)
-            emit(Resource.Success(newsRepository.getBreakNews(countryCode,pageNumber)))
+            val articles = newsRepository.getBreakNews(countryCode, pageNumber).articles
+            val list: ArrayList<Article> = arrayListOf()
+            emit(Resource.Success(list))
         }catch (e: HttpException){
             emit(Resource.Error(e.localizedMessage.orEmpty()))
         }catch (e: IOException){

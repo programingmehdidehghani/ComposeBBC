@@ -27,7 +27,7 @@ fun SettingScreen(
     viewModel: NewsViewModel = hiltViewModel()
 ) {
     val state = viewModel.state.value
-    Log.i("list","${state.agents.size}")
+    Log.i("list","${state.agents.toString()}")
 /*    LazyColumn(
         Modifier.padding(12.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
