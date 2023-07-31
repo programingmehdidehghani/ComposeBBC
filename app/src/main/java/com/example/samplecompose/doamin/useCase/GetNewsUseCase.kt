@@ -19,9 +19,30 @@ class GetNewsUseCase @Inject constructor(
 
         try {
             emit(Resource.Loading)
-            val articles = newsRepository.getBreakNews(countryCode, pageNumber).articles
-            val list: ArrayList<Article> = arrayListOf()
-            emit(Resource.Success(list))
+            newsRepository.getBreakNews(countryCode, pageNumber).articles.let {
+                val list = mutableListOf<Article>()
+                for (i in it) {
+                    val article = Article(
+                        i.id,
+                        i.author,
+                        i.content,
+                        i.description,
+                        i.publishedAt,
+                        i.source,
+                        i.title,
+                        i.url,
+                        i.urlToImage
+                    )
+                    list.add(article)
+                }
+                val newsResponse = NewsResponse(
+                    status = "ok",
+                    totalResults = list.size,
+                    articles = list
+                )
+                emit(Resource.Success(newsResponse))
+            }
+
         }catch (e: HttpException){
             emit(Resource.Error(e.localizedMessage.orEmpty()))
         }catch (e: IOException){

@@ -8,6 +8,6 @@ import retrofit2.Response
 class NewsRepositoryImp (private val apiService: ApiService) : NewsRepository {
 
 
-    override suspend fun getBreakNews(countryCode : String , pageNumber : Int): NewsResponse =
+    override suspend fun getBreakNews(countryCode :String ,pageNumber :Int): NewsResponse =
         apiService.getBreakingNews(countryCode,pageNumber)
 }

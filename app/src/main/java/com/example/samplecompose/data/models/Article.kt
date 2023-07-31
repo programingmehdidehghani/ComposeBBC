@@ -1,5 +1,6 @@
 package com.example.samplecompose.data.models
 
+import androidx.compose.runtime.saveable.autoSaver
 
 
 data class Article(

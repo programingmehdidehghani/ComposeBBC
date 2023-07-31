@@ -1,5 +1,6 @@
 package com.example.samplecompose.presention
 
+import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -25,14 +26,15 @@ class NewsViewModel @Inject constructor (
     init {
         getNews("us",1)
     }
-    private fun getNews(countryCode : String , pageNumber : Int){
-        getNewsUseCase("us",1).onEach {result ->
-            when(result){
-                Resource.Loading -> _state.value = HomeState(isLoading = false)
-                is Resource.Success<*> ->{
+    private fun getNews(countryCode: String, pageNumber: Int) {
+        getNewsUseCase(countryCode, pageNumber).onEach { result ->
+            when (result) {
+                Resource.Loading -> _state.value = HomeState(isLoading = true)
+                is Resource.Success<*> -> {
                     result.data.let {
-                        _state.value = HomeState(agents = it)
-                       // allAgents = it
+                        val response = result.data as NewsResponse
+                        val articles = response.articles
+                        _state.value = HomeState(articles = articles.toMutableList())
                     }
                 }
                 is Resource.Error -> _state.value = HomeState(error = result.errorMessage)
