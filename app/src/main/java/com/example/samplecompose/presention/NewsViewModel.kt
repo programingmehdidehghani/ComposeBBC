@@ -35,6 +35,7 @@ class NewsViewModel @Inject constructor (
                         val response = result.data as NewsResponse
                         val articles = response.articles
                         _state.value = HomeState(articles = articles.toMutableList())
+                        Log.i("result","${articles.size}")
                     }
                 }
                 is Resource.Error -> _state.value = HomeState(error = result.errorMessage)

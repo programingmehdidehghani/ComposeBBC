@@ -32,6 +32,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -44,45 +45,50 @@ fun SettingScreen(
     viewModel: NewsViewModel = hiltViewModel()
 ) {
     val state = viewModel.state.value
-    Log.i("result", "${state.articles.size}")
-
-    /*    LazyColumn(
-            modifier = Modifier.fillMaxSize(),
-            contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 16.dp)
-        ) {
-            state.agents?.let { agents ->
-                val articles = agents as? List<Article>
-                articles?.forEach { article ->
-                    Log.i("title","${article.title.toString()}")
-                }
+    if (state.isLoading) {
+        CircularProgressIndicator(modifier = Modifier.size(50.dp))
+    } else if (state.error.isNotEmpty()) {
+        Text(
+            text = state.error,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.fillMaxWidth().padding(16.dp)
+        )
+    } else {
+        LazyColumn {
+            items(state.articles) { article ->
+                ArticleItem(article = article)
             }
-
-        }*/
+        }
+    }
 }
 
 @Composable
-fun screen1(
-    title: String,
-    description: String
-){
+fun ArticleItem(article: Article) {
     Column(
-        modifier = Modifier
+        Modifier
             .fillMaxWidth()
-            .padding(bottom = 16.dp)
+            .padding(16.dp)
     ) {
         Text(
-            text = title,
+            text = article.title.toString(),
             style = MaterialTheme.typography.h6,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(bottom = 8.dp)
+            fontWeight = FontWeight.Bold
         )
         Text(
-            text = description,
-            style = MaterialTheme.typography.body1,
-            modifier = Modifier.padding(bottom = 8.dp)
+            text = article.author.toString(),
+            style = MaterialTheme.typography.caption,
+            color = Color.Gray
         )
+        Text(
+            text = article.description.toString(),
+            style = MaterialTheme.typography.body1,
+            modifier = Modifier.padding(top = 8.dp)
+        )
+        // Add any other details you want to display for the article
     }
 }
+
+
 
 
 
