@@ -54,12 +54,6 @@ class MainActivity : ComponentActivity() {
                                     title = "Setting",
                                     contentDescription = "Go to setting Screen",
                                     icon = Icons.Default.Settings
-                                ),
-                                MenuItem(
-                                    id = "help",
-                                    title = "Help",
-                                    contentDescription = "Get Help",
-                                    icon = Icons.Default.Info
                                 )
 
                             )

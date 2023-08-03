@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.samplecompose.data.models.NewsResponse
 import com.example.samplecompose.doamin.newsUseCase.GetArticleDBUseCase
-import com.example.samplecompose.presention.NewsScreen.NewsState
 import com.example.samplecompose.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn

@@ -1,4 +1,4 @@
-package com.example.samplecompose.presention.NewsScreen
+package com.example.samplecompose.presention.newsScreen
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf

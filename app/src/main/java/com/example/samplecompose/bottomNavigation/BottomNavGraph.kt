@@ -5,7 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.samplecompose.presention.favouriteScreen.FavoriteScreen
-import com.example.samplecompose.presention.NewsScreen.NewsScreen
+import com.example.samplecompose.presention.newsScreen.NewsScreen
 
 @Composable
 fun BottomNavGraph(navController: NavHostController){
