@@ -4,24 +4,20 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.samplecompose.presention.HomeScreen
-import com.example.samplecompose.presention.ProfileScreen
-import com.example.samplecompose.presention.SettingScreen
+import com.example.samplecompose.presention.FavoriteScreen
+import com.example.samplecompose.presention.NewsScreen
 
 @Composable
 fun BottomNavGraph(navController: NavHostController){
     NavHost(
         navController = navController,
-        startDestination = BottomNavItem.Home.route
+        startDestination = BottomNavItem.News.route
     ){
-        composable(route = BottomNavItem.Home.route){
-            HomeScreen()
+        composable(route = BottomNavItem.News.route){
+            NewsScreen()
         }
-        composable(route = BottomNavItem.Profile.route){
-            ProfileScreen()
-        }
-        composable(route = BottomNavItem.Setting.route){
-            SettingScreen()
+        composable(route = BottomNavItem.Favorite.route){
+            FavoriteScreen()
         }
     }
 
