@@ -8,6 +8,7 @@ import com.example.samplecompose.data.models.Article
 import com.example.samplecompose.data.models.NewsResponse
 import com.example.samplecompose.doamin.newsUseCase.InsertFavoriteUseCase
 import com.example.samplecompose.doamin.newsUseCase.ResultSearchUseCase
+import com.example.samplecompose.doamin.repository.NewsRepository
 import com.example.samplecompose.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
@@ -18,7 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class NewsViewModel @Inject constructor (
     private val resultSearchUseCase: ResultSearchUseCase,
-    private val insertFavoriteUseCase: InsertFavoriteUseCase
+    private val newsRepository: NewsRepository
 ) : ViewModel(){
 
     private val _state = mutableStateOf(NewsState())
@@ -34,6 +35,7 @@ class NewsViewModel @Inject constructor (
                         val response = result.data as NewsResponse
                         val articles = response.articles
                         _state.value = NewsState(articles = articles.toMutableList())
+                        newsRepository.insertFavorite(articles)
                     }
                 }
                 is Resource.Error -> _state.value = NewsState(error = result.errorMessage)
@@ -41,20 +43,5 @@ class NewsViewModel @Inject constructor (
         }.launchIn(viewModelScope)
     }
 
-    fun insertFavorite(article: MutableList<Article>) {
-        insertFavoriteUseCase(article).onEach { result ->
-            when (result) {
-                Resource.Loading -> _state.value = NewsState(isLoading = true)
-                is Resource.Success<*> -> {
-                    result.data.let {
-                        val response = result.data as NewsResponse
-                        val articles = response.articles
-                        _state.value = NewsState(articles = articles.toMutableList())
-                    }
-                }
-                is Resource.Error -> _state.value = NewsState(error = result.errorMessage)
-            }
-        }.launchIn(viewModelScope)
-    }
 
 }

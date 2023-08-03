@@ -16,28 +16,9 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun FavoriteScreen(){
-    val listof = listOf(
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
 
-    )
 
-    LazyColumn(
-        Modifier.padding(12.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp),
-        contentPadding = PaddingValues(end = 16.dp)
-    ) {
-        items(listof) { item ->
-            Text(text = item, modifier = Modifier.padding(8.dp))
-            Icon(imageVector = Icons.Default.Face, contentDescription = "")
-        }
-    }
+
 
 
 }

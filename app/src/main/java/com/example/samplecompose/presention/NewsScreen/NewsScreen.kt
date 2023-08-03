@@ -54,8 +54,7 @@ fun NewsScreen(
             onValueChange = { newQuery ->
                 text = newQuery
                 if (text != ""){
-                    viewModel.getResultSearchQuery(text,1)
-                } else {
+                     viewModel.getResultSearchQuery(text,1)
                 }
             },
             label = { Text("Search") },
