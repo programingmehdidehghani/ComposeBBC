@@ -1,6 +1,7 @@
 package com.example.samplecompose.di
 
 import com.example.samplecompose.data.api.ApiService
+import com.example.samplecompose.data.db.FavoriteDB
 import com.example.samplecompose.data.repository.NewsRepositoryImp
 import com.example.samplecompose.doamin.repository.NewsRepository
 import dagger.Module
@@ -16,8 +17,8 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideNewsRepository(apiService: ApiService) : NewsRepository {
-        return NewsRepositoryImp(apiService)
+    fun provideNewsRepository(apiService: ApiService, favoriteDB: FavoriteDB) : NewsRepository {
+        return NewsRepositoryImp(apiService,favoriteDB)
     }
 
 }

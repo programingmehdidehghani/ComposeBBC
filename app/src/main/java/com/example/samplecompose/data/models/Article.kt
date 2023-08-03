@@ -1,8 +1,16 @@
 package com.example.samplecompose.data.models
 
+import androidx.room.Entity
+import androidx.room.Index
+import androidx.room.PrimaryKey
 
 
+@Entity(
+    tableName = "articles",
+    indices = [Index(value = ["publishedAt"], unique = true)]
+)
 data class Article(
+    @PrimaryKey(autoGenerate = true)
     var id : Int? = null,
     val author : String?,
     val content : String?,

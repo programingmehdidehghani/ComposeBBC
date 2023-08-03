@@ -1,5 +1,6 @@
 package com.example.samplecompose.doamin.newsUseCase
 
+import com.example.samplecompose.data.models.Article
 import com.example.samplecompose.data.models.NewsResponse
 import com.example.samplecompose.doamin.repository.NewsRepository
 import com.example.samplecompose.util.Resource
@@ -9,26 +10,24 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class GetNewsUseCase @Inject constructor(
+class InsertFavoriteUseCase @Inject constructor(
     private val newsRepository: NewsRepository
 ) {
 
-    operator fun invoke(countryCode : String , pageNumber : Int): Flow<Resource<NewsResponse>> = flow {
+    operator fun invoke(article: MutableList<Article>): Flow<Resource<NewsResponse>> = flow {
 
         try {
             emit(Resource.Loading)
-            newsRepository.getBreakNews(countryCode, pageNumber).articles.let {
-                val newsResponse = NewsResponse(
-                    status = "ok",
-                    totalResults = it.size,
-                    articles = it
-                )
-                emit(Resource.Success(newsResponse))
-            }
-
-        }catch (e: HttpException){
+            newsRepository.insertFavorite(article)
+            val newsResponse = NewsResponse(
+                status = "ok",
+                totalResults = article.size,
+                articles = article
+            )
+            emit(Resource.Success(newsResponse))
+        } catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage.orEmpty()))
-        }catch (e: IOException){
+        } catch (e: IOException) {
             emit(Resource.Error(e.localizedMessage.orEmpty()))
         }
     }
