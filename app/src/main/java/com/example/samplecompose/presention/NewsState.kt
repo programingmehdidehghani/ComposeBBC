@@ -1,4 +1,4 @@
-package com.example.samplecompose.presention.NewsScreen
+package com.example.samplecompose.presention
 
 import com.example.samplecompose.data.models.Article
 
