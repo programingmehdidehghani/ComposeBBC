@@ -1,7 +1,5 @@
-package com.example.samplecompose.doamin.useCase
+package com.example.samplecompose.doamin.newsUseCase
 
-import android.util.Log
-import com.example.samplecompose.data.models.Article
 import com.example.samplecompose.data.models.NewsResponse
 import com.example.samplecompose.doamin.repository.NewsRepository
 import com.example.samplecompose.util.Resource
@@ -11,15 +9,15 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class GetNewsUseCase @Inject constructor(
+class ResultSearchUseCase @Inject constructor(
     private val newsRepository: NewsRepository
 ) {
 
-    operator fun invoke(countryCode : String , pageNumber : Int): Flow<Resource<NewsResponse>> = flow {
+    operator fun invoke(searchQuery : String , pageNumber : Int): Flow<Resource<NewsResponse>> = flow {
 
         try {
             emit(Resource.Loading)
-            newsRepository.getBreakNews(countryCode, pageNumber).articles.let {
+            newsRepository.getResultSearch(searchQuery, pageNumber).articles.let {
                 val newsResponse = NewsResponse(
                     status = "ok",
                     totalResults = it.size,

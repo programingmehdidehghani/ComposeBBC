@@ -1,4 +1,4 @@
-package com.example.samplecompose.presention
+package com.example.samplecompose.presention.FavoriteScreen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues

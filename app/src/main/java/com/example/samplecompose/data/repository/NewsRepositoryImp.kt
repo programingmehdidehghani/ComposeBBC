@@ -10,4 +10,7 @@ class NewsRepositoryImp (private val apiService: ApiService) : NewsRepository {
 
     override suspend fun getBreakNews(countryCode :String ,pageNumber :Int): NewsResponse =
         apiService.getBreakingNews(countryCode,pageNumber)
+
+    override suspend fun getResultSearch(searchQuery :String ,pageNumber :Int): NewsResponse =
+        apiService.searchForNews(searchQuery,pageNumber)
 }
