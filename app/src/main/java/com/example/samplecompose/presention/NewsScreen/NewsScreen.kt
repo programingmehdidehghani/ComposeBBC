@@ -1,5 +1,7 @@
 package com.example.samplecompose.presention.NewsScreen
 
+import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -31,6 +33,7 @@ import com.bumptech.glide.integration.compose.GlideImage
 import com.example.samplecompose.data.models.Article
 
 
+@SuppressLint("RememberReturnType")
 @Composable
 fun NewsScreen(
     viewModel: NewsViewModel = hiltViewModel()
@@ -45,7 +48,11 @@ fun NewsScreen(
             value = text,
             onValueChange = { newQuery ->
                 text = newQuery
-                viewModel.getResultSearchQuery(text,1)
+                if (text != ""){
+                    viewModel.getResultSearchQuery(text,1)
+                } else {
+                    viewModel.getNews("us",1)
+                }
             },
             label = { Text("Search") },
             leadingIcon = { Icon(Icons.Filled.Search, contentDescription = null) },
@@ -54,9 +61,14 @@ fun NewsScreen(
                 .align(Alignment.CenterHorizontally)
         )
         if (state.isLoading) {
-            CircularProgressIndicator(
-                color = Color.Black
-            )
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                CircularProgressIndicator(
+                    color = Color.Black
+                )
+            }
         } else if (state.error.isNotEmpty()) {
             Text(
                 text = state.error,

@@ -27,7 +27,7 @@ class NewsViewModel @Inject constructor (
     init {
         getNews("us",1)
     }
-    private fun getNews(countryCode: String, pageNumber: Int) {
+    fun getNews(countryCode: String, pageNumber: Int) {
         getNewsUseCase(countryCode, pageNumber).onEach { result ->
             when (result) {
                 Resource.Loading -> _state.value = NewsState(isLoading = true)
@@ -36,7 +36,6 @@ class NewsViewModel @Inject constructor (
                         val response = result.data as NewsResponse
                         val articles = response.articles
                         _state.value = NewsState(articles = articles.toMutableList())
-                        Log.i("result","${articles.size}")
                     }
                 }
                 is Resource.Error -> _state.value = NewsState(error = result.errorMessage)
@@ -53,7 +52,6 @@ class NewsViewModel @Inject constructor (
                         val response = result.data as NewsResponse
                         val articles = response.articles
                         _state.value = NewsState(articles = articles.toMutableList())
-                        Log.i("result","${articles.size}")
                     }
                 }
                 is Resource.Error -> _state.value = NewsState(error = result.errorMessage)

@@ -1,10 +1,14 @@
 package com.example.samplecompose.di
 
+import android.content.Context
+import androidx.room.Room
 import com.example.samplecompose.data.api.ApiService
 import com.example.samplecompose.util.Constants.Companion.BASE_URL
+import com.example.samplecompose.util.Constants.Companion.DATABASE_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -25,4 +29,14 @@ object AppModule {
             .build()
             .create()
     }
+
+    @Singleton
+    @Provides
+    fun provideRunningDatabase(
+        @ApplicationContext app: Context
+    ) = Room.databaseBuilder(
+        app,
+        NewsDB::class.java,
+        DATABASE_NAME
+    ).build()
 }
