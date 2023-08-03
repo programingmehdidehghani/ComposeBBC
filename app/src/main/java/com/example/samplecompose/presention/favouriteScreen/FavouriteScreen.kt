@@ -50,12 +50,20 @@ fun FavoriteScreen(
                     .fillMaxWidth()
                     .padding(16.dp)
             )
-        } else {
+        } else if (state.articles.isNotEmpty()) { // Check if the list is not empty
             LazyColumn {
                 items(state.articles) { article ->
                     getListFromDB(article = article)
                 }
             }
+        } else { // Display a message when the list is empty
+            Text(
+                text = "No articles found.",
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            )
         }
 
     }

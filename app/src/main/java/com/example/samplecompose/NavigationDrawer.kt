@@ -61,14 +61,6 @@ fun DrawerBody(
 
         }
     }
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()
-    ) {
-        androidx.compose.material.Text(
-            text = "hello setting",
-            fontSize = 22.sp
-        )
-    }
+
 
 }

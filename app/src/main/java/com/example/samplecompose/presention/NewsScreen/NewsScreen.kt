@@ -36,6 +36,7 @@ import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 
 import com.example.samplecompose.data.models.Article
+import com.example.samplecompose.presention.favouriteScreen.getListFromDB
 
 
 @SuppressLint("RememberReturnType", "UnusedMaterialScaffoldPaddingParameter")
@@ -80,12 +81,20 @@ fun NewsScreen(
                     .fillMaxWidth()
                     .padding(16.dp)
             )
-        } else {
+        } else if (state.articles.isNotEmpty()) { // Check if the list is not empty
             LazyColumn {
                 items(state.articles) { article ->
-                    ArticleItem(article = article)
+                    getListFromDB(article = article)
                 }
             }
+        } else { // Display a message when the list is empty
+            Text(
+                text = "Search your Favourite Article",
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            )
         }
 
     }
