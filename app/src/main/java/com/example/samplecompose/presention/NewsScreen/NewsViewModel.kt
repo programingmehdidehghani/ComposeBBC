@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.samplecompose.data.models.NewsResponse
 import com.example.samplecompose.doamin.newsUseCase.ResultSearchUseCase
 import com.example.samplecompose.doamin.repository.NewsRepository
-import com.example.samplecompose.presention.NewsState
 import com.example.samplecompose.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn

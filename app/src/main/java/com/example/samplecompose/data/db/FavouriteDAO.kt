@@ -8,7 +8,7 @@ import com.example.samplecompose.data.models.Article
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface FavoriteDAO {
+interface FavouriteDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertArticle(article: MutableList<Article>)

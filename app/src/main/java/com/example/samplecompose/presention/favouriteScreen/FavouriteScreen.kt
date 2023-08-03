@@ -1,27 +1,16 @@
-package com.example.samplecompose.presention.FavoriteScreen
+package com.example.samplecompose.presention.favouriteScreen
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.material.TextField
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Face
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -32,16 +21,14 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.example.samplecompose.data.models.Article
-import com.example.samplecompose.presention.NewsScreen.ArticleItem
-import com.example.samplecompose.presention.NewsScreen.NewsViewModel
 
 
 @Composable
 fun FavoriteScreen(
-    favoriteViewModel: FavoriteViewModel = hiltViewModel()
+    favouriteViewModel: FavouriteViewModel = hiltViewModel()
 ){
 
-    val state = favoriteViewModel.state.value
+    val state = favouriteViewModel.state.value
 
     Column(
         modifier = Modifier.fillMaxSize()

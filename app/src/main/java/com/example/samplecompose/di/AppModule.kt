@@ -3,7 +3,7 @@ package com.example.samplecompose.di
 import android.content.Context
 import androidx.room.Room
 import com.example.samplecompose.data.api.ApiService
-import com.example.samplecompose.data.db.FavoriteDB
+import com.example.samplecompose.data.db.FavouriteDB
 import com.example.samplecompose.util.Constants.Companion.BASE_URL
 import com.example.samplecompose.util.Constants.Companion.DATABASE_NAME
 import dagger.Module
@@ -37,7 +37,7 @@ object AppModule {
         @ApplicationContext app: Context
     ) = Room.databaseBuilder(
         app,
-        FavoriteDB::class.java,
+        FavouriteDB::class.java,
         DATABASE_NAME
     ).build()
 }

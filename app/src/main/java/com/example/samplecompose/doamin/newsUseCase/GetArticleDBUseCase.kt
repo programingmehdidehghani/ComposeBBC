@@ -17,10 +17,11 @@ class GetArticleDBUseCase @Inject constructor(
     private val newsRepository: NewsRepository
 ) {
 
-    operator fun invoke(): Flow<Resource<Article>> = flow {
+    operator fun invoke(): Flow<Resource<NewsResponse>> = flow {
         try {
             emit(Resource.Loading)
             newsRepository.getListArticleFromDB().collect { articles ->
+                val newArticle : MutableList<Article> = arrayListOf()
                 for (i in articles){
                     val article = Article(
                         id = i.id,
@@ -33,8 +34,14 @@ class GetArticleDBUseCase @Inject constructor(
                         url = i.url,
                         urlToImage = i.urlToImage
                     )
-                    emit(Resource.Success(article))
+                    newArticle.add(article)
                 }
+                val newsResponse = NewsResponse(
+                    status = "ok",
+                    totalResults = newArticle.size,
+                    articles = newArticle
+                )
+                emit(Resource.Success(newsResponse))
             }
         } catch (e: Exception) {
             emit(Resource.Error(e.localizedMessage.orEmpty()))

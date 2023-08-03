@@ -10,7 +10,7 @@ import com.example.samplecompose.data.models.Article
     version = 1
 )
 @TypeConverters(Converters::class)
-abstract class FavoriteDB : RoomDatabase() {
+abstract class FavouriteDB : RoomDatabase() {
 
-    abstract fun getRunDao() : FavoriteDAO
+    abstract fun getRunDao() : FavouriteDAO
 }
