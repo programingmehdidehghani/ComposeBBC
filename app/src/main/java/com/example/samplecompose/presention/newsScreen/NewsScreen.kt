@@ -79,7 +79,7 @@ fun NewsScreen(
         } else if (state.articles.isNotEmpty()) { // Check if the list is not empty
             LazyColumn {
                 items(state.articles) { article ->
-                    getListFromDB(article = article)
+                    ArticleItem(article = article)
                 }
             }
         } else { // Display a message when the list is empty
